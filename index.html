@@ -110,6 +110,15 @@ a{color:var(--accent-2);}
 .upload-btn svg{width:16px;height:16px;}
 .upload-btn span.full{display:inline;}
 @media (max-width:640px){ .upload-btn span.full{display:none;} .upload-btn{padding:10px;} .brand-text span{display:none;} }
+.account-btn{
+  flex-shrink:0; display:flex; align-items:center; gap:7px;
+  background:var(--surface); border:1px solid var(--border-solid); color:var(--text-muted);
+  border-radius:999px; padding:6px 14px 6px 6px; font-size:13px; font-weight:600; cursor:pointer;
+}
+.account-btn[data-mode="account"]{color:var(--text); border-color:#8B7CFF55;}
+.account-avatar{width:24px;height:24px;border-radius:50%;background:var(--surface-3);display:flex;align-items:center;justify-content:center;font-size:13px;overflow:hidden;flex-shrink:0;}
+.account-avatar img{width:100%;height:100%;object-fit:cover;}
+@media (max-width:640px){ .account-btn span.full{display:none;} .account-btn{padding:6px;} }
 
 /* ---------- tag filter row ---------- */
 .tagbar{
@@ -125,6 +134,60 @@ a{color:var(--accent-2);}
 }
 .tag-chip:hover{border-color:#8B7CFF55; color:var(--text);}
 .tag-chip.active{background:var(--accent-dim); border-color:#8B7CFF77; color:var(--accent-2);}
+
+/* ---------- sortbar / favorites ---------- */
+.sortbar{display:flex; align-items:center; justify-content:space-between; gap:10px; padding:14px 22px 0; flex-wrap:wrap;}
+.sort-group{display:flex; gap:8px;}
+.fav-toggle{color:var(--text-muted);}
+.fav-toggle.active{background:#F2C76626; border-color:#F2C76677; color:#F2C766;}
+
+/* ---------- card like/favorite actions ---------- */
+.card-actions{display:flex; align-items:center; gap:6px;}
+.icon-btn{
+  display:flex; align-items:center; gap:4px; background:none; border:1px solid transparent;
+  border-radius:999px; padding:4px 8px; cursor:pointer; color:var(--text-faint);
+  font-family:var(--ff-mono); font-size:11px; transition:all .15s;
+}
+.icon-btn svg{width:14px;height:14px;}
+.icon-btn:hover{background:var(--surface-3); color:var(--text);}
+.icon-btn.like.active{color:#FF6B9A;}
+.icon-btn.like.active svg{fill:#FF6B9A;}
+.icon-btn.fav.active{color:#F2C766;}
+.icon-btn.fav.active svg{fill:#F2C766;}
+
+/* ---------- comments ---------- */
+.section-title{font-size:13px; font-weight:700; color:var(--text-muted); margin:22px 0 10px;}
+.comment-item{background:var(--surface-2); border:1px solid var(--border-solid); border-radius:12px; padding:10px 13px; margin-bottom:8px;}
+.comment-item .c-head{display:flex; justify-content:space-between; align-items:baseline; margin-bottom:3px;}
+.comment-item .c-author{font-size:12.5px; font-weight:700; color:var(--text);}
+.comment-item .c-date{font-size:10.5px; color:var(--text-faint); font-family:var(--ff-mono);}
+.comment-item .c-text{font-size:13px; color:var(--text-muted); line-height:1.55; white-space:pre-wrap;}
+.comment-empty{font-size:12.5px; color:var(--text-faint); padding:6px 2px 14px;}
+.comment-form{display:flex; flex-direction:column; gap:8px; margin-top:10px;}
+.comment-form input, .comment-form textarea{
+  background:var(--surface-2); border:1px solid var(--border-solid); color:var(--text);
+  border-radius:11px; padding:9px 12px; font-size:13px; font-family:var(--ff-ui); outline:none; resize:vertical;
+}
+.comment-form textarea{min-height:60px;}
+.comment-submit{align-self:flex-end; background:var(--accent-dim); color:var(--accent-2); border:1px solid #8B7CFF55; border-radius:10px; padding:7px 14px; font-size:12.5px; font-weight:600; cursor:pointer;}
+.comment-submit:disabled{opacity:.5; cursor:default;}
+
+/* ---------- history ---------- */
+.history-item{display:flex; gap:10px; padding:9px 0; border-bottom:1px solid var(--border);}
+.history-item:last-child{border-bottom:none;}
+.history-ver{font-family:var(--ff-mono); font-size:12px; font-weight:700; color:var(--accent-2); flex-shrink:0; width:64px;}
+.history-body{flex:1; min-width:0;}
+.history-note{font-size:12.5px; color:var(--text-muted); line-height:1.5;}
+.history-date{font-size:10.5px; color:var(--text-faint); font-family:var(--ff-mono); margin-top:2px;}
+
+/* ---------- report ---------- */
+.report-link{background:none; border:none; color:var(--text-faint); font-size:11.5px; cursor:pointer; padding:8px 2px; text-decoration:underline; text-underline-offset:2px;}
+.report-box{display:none; margin-top:8px; background:var(--danger-dim); border:1px solid #FF6B6B44; border-radius:12px; padding:12px;}
+.report-box textarea{width:100%; background:var(--surface-2); border:1px solid var(--border-solid); color:var(--text); border-radius:9px; padding:9px 11px; font-size:12.5px; font-family:var(--ff-ui); resize:vertical; min-height:56px; outline:none;}
+.report-box .report-actions{display:flex; gap:8px; margin-top:8px; justify-content:flex-end;}
+.report-box button{border:none; border-radius:9px; padding:7px 13px; font-size:12px; font-weight:600; cursor:pointer;}
+.report-cancel{background:var(--surface-3); color:var(--text-muted);}
+.report-submit{background:var(--danger); color:#fff;}
 
 /* ---------- main / grid ---------- */
 main{padding:18px 22px 90px; max-width:1400px; margin:0 auto;}
@@ -307,9 +370,6 @@ main{padding:18px 22px 90px; max-width:1400px; margin:0 auto;}
 
 <header class="topbar">
   <div class="brand" id="brand-home">
-    <div class="brand-mark">
-      <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="14" r="1.6" fill="#fff" stroke="none"/><path d="M8 11a5.7 5.7 0 0 1 8 0M5 7.4a10.6 10.6 0 0 1 14 0"/></svg>
-    </div>
     <div class="brand-text"><b>ModHub</b><span>SIGNAL MOD配布</span></div>
   </div>
   <div class="search-wrap">
@@ -321,8 +381,19 @@ main{padding:18px 22px 90px; max-width:1400px; margin:0 auto;}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12m0-12 5 5m-5-5-5 5"/><path d="M4 18v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/></svg>
     <span class="full">MODを投稿</span>
   </button>
+  <button class="account-btn" id="account-btn" data-mode="login">
+    <span class="account-avatar">👤</span><span class="full">ログイン</span>
+  </button>
 </header>
 
+<div class="sortbar">
+  <div class="sort-group" id="sort-group">
+    <button class="tag-chip active" data-sort="new">新着順</button>
+    <button class="tag-chip" data-sort="updated">更新順</button>
+    <button class="tag-chip" data-sort="popular">人気順</button>
+  </div>
+  <button class="tag-chip fav-toggle" id="fav-toggle">★ 保存済み</button>
+</div>
 <div class="tagbar" id="tagbar" style="display:none;"></div>
 
 <main>
@@ -353,14 +424,14 @@ main{padding:18px 22px 90px; max-width:1400px; margin:0 auto;}
   <div class="sheet-handle"></div>
   <button class="sheet-close" id="upload-close">✕</button>
   <div class="sheet-scroll">
-    <div class="form-title">MODを投稿</div>
-    <div class="form-sub">.sxgファイルを選ぶと mod.json から名前・説明・作者・バージョンを自動入力します（後から編集可）。</div>
+    <div class="form-title" id="upload-form-title">MODを投稿</div>
+    <div class="form-sub" id="upload-form-sub">.sxgファイルを選ぶと mod.json から名前・説明・作者・バージョンを自動入力します（後から編集可）。</div>
 
     <input type="file" id="sxg-input" accept=".sxg" style="display:none;">
     <div class="drop-zone" id="drop-zone">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 16V4m0 0 4 4m-4-4-4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-      <div class="dz-main">.sxgファイルをドロップ、またはタップして選択</div>
-      <div class="dz-sub">SIGNAL用MODファイル（中身はzip・15MBまで）</div>
+      <div class="dz-main" id="dz-main-text">.sxgファイルをドロップ、またはタップして選択</div>
+      <div class="dz-sub" id="dz-sub-text">SIGNAL用MODファイル（中身はzip・15MBまで）</div>
     </div>
 
     <div class="field">
@@ -407,6 +478,10 @@ main{padding:18px 22px 90px; max-width:1400px; margin:0 auto;}
         <div class="shot-add" id="shot-add-btn">＋</div>
       </div>
     </div>
+    <div class="field" id="changelog-field" style="display:none;">
+      <label>変更内容メモ <span class="hint">更新履歴に表示されます</span></label>
+      <textarea id="f-changelog" placeholder="例: 軽量化バグを修正"></textarea>
+    </div>
 
     <button class="submit-btn" id="submit-btn">MODを投稿する</button>
     <div class="form-error" id="form-error"></div>
@@ -426,7 +501,7 @@ import {
   getDocs, increment, serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 import {
-  getAuth, signInAnonymously, onAuthStateChanged
+  getAuth, signInAnonymously, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 /* =========================================================================
@@ -439,28 +514,52 @@ import {
    Firestoreの1ドキュメント上限(1MB)を超えないよう、.sxg本体は自動で
    チャンク分割してサブコレクションに保存しています。
 
+   投稿者アカウントはSIGNALとは完全に別で、ModHub独自のGoogleログインを
+   使います（閲覧・いいね・ダウンロード・コメントはログイン不要）。
+   「MODを投稿」時にGoogleログインを要求し、投稿者のUID(ownerUid)を
+   記録するので、編集は投稿した本人しかできません。
+
    必要な設定（Firebaseコンソール側）:
    1. Firestore Database を作成（本番モード推奨）
-   2. Authentication → Sign-in method → 「匿名」を有効化
-   3. Firestore ルール例:
+   2. Authentication → Sign-in method → 「匿名」と「Google」を両方有効化
+   3. Firestore ルール例（本人限定編集・いいね・コメント・通報に対応）:
         rules_version = '2';
         service cloud.firestore {
           match /databases/{database}/documents {
             match /mods/{modId} {
               allow read: if true;
-              allow create: if request.auth != null;
-              allow update: if request.auth != null &&
-                request.resource.data.diff(resource.data).affectedKeys()
-                  .hasOnly(['downloads']);
+              allow create: if request.auth != null
+                && request.auth.token.firebase.sign_in_provider == 'google.com'
+                && request.resource.data.ownerUid == request.auth.uid;
+              allow update: if request.auth != null && (
+                resource.data.ownerUid == request.auth.uid ||
+                request.resource.data.diff(resource.data).affectedKeys().hasOnly(['likes','downloads'])
+              );
               allow delete: if false;
 
               match /chunks/{chunkId} {
                 allow read: if true;
-                allow create: if request.auth != null;
-                allow update, delete: if false;
+                allow write: if request.auth != null &&
+                  get(/databases/$(database)/documents/mods/$(modId)).data.ownerUid == request.auth.uid;
               }
               match /screenshots/{shotId} {
                 allow read: if true;
+                allow write: if request.auth != null &&
+                  get(/databases/$(database)/documents/mods/$(modId)).data.ownerUid == request.auth.uid;
+              }
+              match /history/{historyId} {
+                allow read: if true;
+                allow create: if request.auth != null &&
+                  get(/databases/$(database)/documents/mods/$(modId)).data.ownerUid == request.auth.uid;
+                allow update, delete: if false;
+              }
+              match /comments/{commentId} {
+                allow read: if true;
+                allow create: if request.auth != null;
+                allow update, delete: if false;
+              }
+              match /reports/{reportId} {
+                allow read: if false;
                 allow create: if request.auth != null;
                 allow update, delete: if false;
               }
@@ -483,12 +582,14 @@ const ICON_MAX_DIM = 256;
 const SHOT_MAX_DIM = 1280;
 
 let db, auth, authReady = false;
+const googleProvider = new GoogleAuthProvider();
 if (isConfigured) {
   const app = initializeApp(firebaseConfig);
   db = getFirestore(app);
   auth = getAuth(app);
   onAuthStateChanged(auth, (u) => {
     authReady = !!u;
+    updateAccountUI(u);
   });
   signInAnonymously(auth).catch((e) => console.warn("匿名ログイン失敗", e));
 } else {
@@ -499,10 +600,58 @@ if (isConfigured) {
   document.getElementById('empty-sub').textContent = 'firebaseConfig を設定するとMOD一覧が表示されます。';
 }
 
+function isGoogleUser(u){ return !!u && !u.isAnonymous; }
+function updateAccountUI(u){
+  const btn = document.getElementById('account-btn');
+  if (!btn) return;
+  if (isGoogleUser(u)) {
+    const photo = u.photoURL ? `<img src="${esc(u.photoURL)}" alt="">` : '👤';
+    btn.innerHTML = `<span class="account-avatar">${photo}</span><span class="full">${esc(u.displayName || 'アカウント')}</span>`;
+    btn.dataset.mode = 'account';
+  } else {
+    btn.innerHTML = `<span class="account-avatar">👤</span><span class="full">ログイン</span>`;
+    btn.dataset.mode = 'login';
+  }
+}
+async function ensureGoogleLogin(){
+  if (isGoogleUser(auth.currentUser)) return true;
+  try {
+    await signInWithPopup(auth, googleProvider);
+    return true;
+  } catch (e) {
+    console.warn('Googleログイン失敗', e);
+    toast('ログインに失敗しました', 'err');
+    return false;
+  }
+}
+document.getElementById('account-btn').addEventListener('click', async () => {
+  const btn = document.getElementById('account-btn');
+  if (btn.dataset.mode === 'account') {
+    if (!confirm('ログアウトしますか？')) return;
+    try {
+      await signOut(auth);
+      await signInAnonymously(auth);
+      toast('ログアウトしました', 'info');
+    } catch (e) { console.warn(e); }
+  } else {
+    await ensureGoogleLogin();
+  }
+});
+
 /* ---------- state ---------- */
 let allMods = [];
 let activeTag = null;
 let searchQuery = '';
+let sortMode = 'new'; // 'new' | 'updated' | 'popular'
+let favOnly = false;
+const FAV_KEY = 'modhub_favorites_v1';
+const LIKE_KEY = 'modhub_liked_v1';
+function getFavSet(){ try { return new Set(JSON.parse(localStorage.getItem(FAV_KEY) || '[]')); } catch(_) { return new Set(); } }
+function saveFavSet(s){ try { localStorage.setItem(FAV_KEY, JSON.stringify(Array.from(s))); } catch(_) {} }
+function getLikedSet(){ try { return new Set(JSON.parse(localStorage.getItem(LIKE_KEY) || '[]')); } catch(_) { return new Set(); } }
+function saveLikedSet(s){ try { localStorage.setItem(LIKE_KEY, JSON.stringify(Array.from(s))); } catch(_) {} }
+let favSet = getFavSet();
+let likedSet = getLikedSet();
 
 /* ---------- utils ---------- */
 function esc(s){ return String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
@@ -614,6 +763,7 @@ function renderTagbar(){
 function applyFilters(){
   const q = searchQuery.trim().toLowerCase();
   let list = allMods;
+  if (favOnly) list = list.filter(m => favSet.has(m.id));
   if (activeTag) list = list.filter(m => (m.tags || []).includes(activeTag));
   if (q) {
     list = list.filter(m => {
@@ -621,8 +771,29 @@ function applyFilters(){
       return hay.includes(q);
     });
   }
+  list = list.slice().sort((a, b) => {
+    if (sortMode === 'popular') return (b.likes || 0) - (a.likes || 0);
+    const bKey = sortMode === 'updated' ? (b.updatedAt || b.createdAt) : b.createdAt;
+    const aKey = sortMode === 'updated' ? (a.updatedAt || a.createdAt) : a.createdAt;
+    const bT = bKey && bKey.toMillis ? bKey.toMillis() : 0;
+    const aT = aKey && aKey.toMillis ? aKey.toMillis() : 0;
+    return bT - aT;
+  });
   renderGrid(list);
 }
+document.querySelectorAll('#sort-group .tag-chip').forEach(btn => {
+  btn.addEventListener('click', () => {
+    sortMode = btn.dataset.sort;
+    document.querySelectorAll('#sort-group .tag-chip').forEach(b => b.classList.toggle('active', b === btn));
+    applyFilters();
+  });
+});
+const favToggleBtn = document.getElementById('fav-toggle');
+favToggleBtn.addEventListener('click', () => {
+  favOnly = !favOnly;
+  favToggleBtn.classList.toggle('active', favOnly);
+  applyFilters();
+});
 function renderGrid(list){
   const grid = document.getElementById('grid');
   const empty = document.getElementById('empty-state');
@@ -645,7 +816,7 @@ function renderGrid(list){
   }
   empty.style.display = 'none';
   grid.innerHTML = list.map(m => `
-    <button class="card" data-id="${esc(m.id)}">
+    <div class="card" data-id="${esc(m.id)}" role="button" tabindex="0">
       <div class="card-top">
         ${m.iconData ? `<img class="card-icon" src="data:${esc(m.iconMime||'image/jpeg')};base64,${m.iconData}" alt="">` : `<div class="card-icon">${esc(initialOf(m.name))}</div>`}
         <div class="card-heading">
@@ -657,13 +828,55 @@ function renderGrid(list){
       ${(m.tags && m.tags.length) ? `<div class="card-tags">${m.tags.slice(0,3).map(t=>`<span class="mini-tag">${esc(t)}</span>`).join('')}${m.tags.length>3?`<span class="mini-tag">+${m.tags.length-3}</span>`:''}</div>` : ''}
       <div class="card-foot">
         <span class="ver-badge">v${esc(m.version || '?')}</span>
-        <span class="dl-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M4 18v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/></svg>${m.downloads || 0}</span>
+        <div class="card-actions">
+          <button type="button" class="icon-btn like ${likedSet.has(m.id)?'active':''}" data-action="like" data-id="${esc(m.id)}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.5-8.8C.8 8 2.2 4.5 5.6 4c2-.3 3.7.7 4.4 2.2.4.8.6.8 1 0C11.7 4.7 13.4 3.7 15.4 4c3.4.5 4.8 4 3.1 7.2C16 15.6 12 20 12 20Z"/></svg>${m.likes || 0}
+          </button>
+          <button type="button" class="icon-btn fav ${favSet.has(m.id)?'active':''}" data-action="fav" data-id="${esc(m.id)}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.7 6.2.7-4.6 4.3 1.2 6.2L12 16.9 6.6 19.9l1.2-6.2L3.2 9.4l6.2-.7Z"/></svg>
+          </button>
+          <span class="dl-count"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M4 18v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/></svg>${m.downloads || 0}</span>
+        </div>
       </div>
-    </button>
+    </div>
   `).join('');
   grid.querySelectorAll('.card').forEach(card => {
-    card.addEventListener('click', () => openDetail(card.dataset.id));
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('[data-action]')) return;
+      openDetail(card.dataset.id);
+    });
   });
+  grid.querySelectorAll('[data-action="like"]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggleLike(btn.dataset.id); });
+  });
+  grid.querySelectorAll('[data-action="fav"]').forEach(btn => {
+    btn.addEventListener('click', (e) => { e.stopPropagation(); toggleFavorite(btn.dataset.id); });
+  });
+}
+
+async function toggleLike(id){
+  const m = allMods.find(x => x.id === id);
+  if (!m) return;
+  const liked = likedSet.has(id);
+  if (liked) likedSet.delete(id); else likedSet.add(id);
+  saveLikedSet(likedSet);
+  try {
+    await updateDoc(doc(db, 'mods', id), { likes: increment(liked ? -1 : 1) });
+  } catch (e) {
+    console.warn('いいねの更新に失敗', e);
+    if (liked) likedSet.add(id); else likedSet.delete(id);
+    saveLikedSet(likedSet);
+    toast('いいねに失敗しました', 'err');
+  }
+}
+function toggleFavorite(id){
+  if (favSet.has(id)) favSet.delete(id); else favSet.add(id);
+  saveFavSet(favSet);
+  applyFilters();
+  if (document.getElementById('detail-sheet').classList.contains('open')) {
+    const m = allMods.find(x => x.id === id);
+    if (m) refreshDetailFavLike(m);
+  }
 }
 
 document.getElementById('search-input').addEventListener('input', (e) => {
@@ -701,6 +914,21 @@ async function openDetail(id){
         ${(m.tags && m.tags.length) ? `<div class="detail-tags">${m.tags.map(t=>`<span class="mini-tag">${esc(t)}</span>`).join('')}</div>` : ''}
       </div>
     </div>
+    <div class="card-actions" id="detail-actions" style="margin:14px 0 4px;">
+      <button type="button" class="icon-btn like ${likedSet.has(m.id)?'active':''}" id="detail-like-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-9.5-8.8C.8 8 2.2 4.5 5.6 4c2-.3 3.7.7 4.4 2.2.4.8.6.8 1 0C11.7 4.7 13.4 3.7 15.4 4c3.4.5 4.8 4 3.1 7.2C16 15.6 12 20 12 20Z"/></svg>
+        <span id="detail-like-count">${m.likes || 0}</span>
+      </button>
+      <button type="button" class="icon-btn fav ${favSet.has(m.id)?'active':''}" id="detail-fav-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.7 6.2.7-4.6 4.3 1.2 6.2L12 16.9 6.6 19.9l1.2-6.2L3.2 9.4l6.2-.7Z"/></svg>
+        <span>保存</span>
+      </button>
+      <button type="button" class="icon-btn" id="detail-edit-btn" style="display:${(auth && auth.currentUser && auth.currentUser.uid === m.ownerUid) ? 'flex' : 'none'};">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+        <span>編集</span>
+      </button>
+    </div>
+    ${m.ownerName ? `<div class="dl-sub" style="text-align:left; margin:-6px 0 4px;">投稿者: ${esc(m.ownerName)}</div>` : ''}
     <p class="detail-desc">${esc(m.description || '説明はありません。')}</p>
     <div class="shots-row" id="shots-row-${esc(m.id)}">${(m.screenshotCount > 0) ? `<div class="spinner" style="margin:10px;"></div>` : ''}</div>
     <div class="meta-grid">
@@ -708,14 +936,56 @@ async function openDetail(id){
       <div class="meta-cell"><div class="k">対応SIGNAL</div><div class="v">${esc(m.compatVersion || 'すべて')}</div></div>
       <div class="meta-cell"><div class="k">ファイルサイズ</div><div class="v">${fmtBytes(m.fileSize)}</div></div>
       <div class="meta-cell"><div class="k">投稿日</div><div class="v">${fmtDate(m.createdAt)}</div></div>
+      <div class="meta-cell" style="grid-column:1/-1;"><div class="k">更新日時</div><div class="v">${fmtDate(m.updatedAt || m.createdAt)}</div></div>
     </div>
     <button class="dl-btn" id="do-download">
       <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11m0 0 4-4m-4 4-4-4"/><path d="M4 18v1a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-1"/></svg>
       ダウンロード（${m.downloads || 0}）
     </button>
     <div class="dl-sub">${esc(m.fileName || 'mod.sxg')}</div>
+
+    <div class="section-title" id="history-title" style="display:none;">更新履歴</div>
+    <div id="history-list"></div>
+
+    <div class="section-title">コメント</div>
+    <div id="comments-list"><div class="comment-empty">読み込み中…</div></div>
+    <div class="comment-form">
+      <input type="text" id="comment-author" placeholder="名前（任意）" maxlength="30">
+      <textarea id="comment-text" placeholder="コメントを入力" maxlength="500"></textarea>
+      <button type="button" class="comment-submit" id="comment-submit">投稿</button>
+    </div>
+
+    <button type="button" class="report-link" id="report-open">🚩 このMODを通報する</button>
+    <div class="report-box" id="report-box">
+      <textarea id="report-reason" placeholder="通報理由を入力してください"></textarea>
+      <div class="report-actions">
+        <button type="button" class="report-cancel" id="report-cancel">キャンセル</button>
+        <button type="button" class="report-submit" id="report-submit">通報する</button>
+      </div>
+    </div>
   `;
   document.getElementById('do-download').addEventListener('click', () => handleDownload(m));
+  document.getElementById('detail-like-btn').addEventListener('click', async () => {
+    await toggleLike(m.id);
+    const fresh = allMods.find(x => x.id === m.id) || m;
+    m.likes = fresh.likes;
+    document.getElementById('detail-like-count').textContent = fresh.likes || 0;
+    document.getElementById('detail-like-btn').classList.toggle('active', likedSet.has(m.id));
+  });
+  document.getElementById('detail-fav-btn').addEventListener('click', () => {
+    toggleFavorite(m.id);
+    document.getElementById('detail-fav-btn').classList.toggle('active', favSet.has(m.id));
+  });
+  document.getElementById('detail-edit-btn').addEventListener('click', () => { closeDetail(); openEditMod(m); });
+
+  const reportOpenBtn = document.getElementById('report-open');
+  const reportBox = document.getElementById('report-box');
+  reportOpenBtn.addEventListener('click', () => { reportBox.style.display = reportBox.style.display === 'block' ? 'none' : 'block'; });
+  document.getElementById('report-cancel').addEventListener('click', () => { reportBox.style.display = 'none'; document.getElementById('report-reason').value = ''; });
+  document.getElementById('report-submit').addEventListener('click', () => submitReport(m.id));
+
+  document.getElementById('comment-submit').addEventListener('click', () => submitComment(m.id));
+
   detailOverlay.classList.add('open');
   detailSheet.classList.add('open');
 
@@ -739,6 +1009,102 @@ async function openDetail(id){
     } catch (e) {
       console.warn('スクリーンショットの取得に失敗', e);
     }
+  }
+
+  loadHistory(m.id);
+  loadComments(m.id);
+}
+function refreshDetailFavLike(m){
+  const likeBtn = document.getElementById('detail-like-btn');
+  const favBtn = document.getElementById('detail-fav-btn');
+  if (likeBtn) likeBtn.classList.toggle('active', likedSet.has(m.id));
+  if (favBtn) favBtn.classList.toggle('active', favSet.has(m.id));
+}
+async function loadHistory(modId){
+  const listEl = document.getElementById('history-list');
+  const titleEl = document.getElementById('history-title');
+  if (!listEl) return;
+  try {
+    const hq = query(collection(db, 'mods', modId, 'history'), orderBy('updatedAt', 'desc'));
+    const snap = await getDocs(hq);
+    if (snap.empty) return;
+    titleEl.style.display = 'block';
+    listEl.innerHTML = snap.docs.map(d => {
+      const h = d.data();
+      return `<div class="history-item">
+        <div class="history-ver">v${esc(h.version || '?')}</div>
+        <div class="history-body">
+          <div class="history-note">${esc(h.note || '更新内容の記載なし')}</div>
+          <div class="history-date">${fmtDate(h.updatedAt)}</div>
+        </div>
+      </div>`;
+    }).join('');
+  } catch (e) { console.warn('更新履歴の取得に失敗', e); }
+}
+async function loadComments(modId){
+  const listEl = document.getElementById('comments-list');
+  if (!listEl) return;
+  try {
+    const cq = query(collection(db, 'mods', modId, 'comments'), orderBy('createdAt', 'desc'));
+    const snap = await getDocs(cq);
+    if (snap.empty) { listEl.innerHTML = '<div class="comment-empty">まだコメントはありません。</div>'; return; }
+    listEl.innerHTML = snap.docs.map(d => {
+      const c = d.data();
+      return `<div class="comment-item">
+        <div class="c-head"><span class="c-author">${esc(c.author || '匿名')}</span><span class="c-date">${fmtDate(c.createdAt)}</span></div>
+        <div class="c-text">${esc(c.text || '')}</div>
+      </div>`;
+    }).join('');
+  } catch (e) {
+    console.warn('コメントの取得に失敗', e);
+    listEl.innerHTML = '<div class="comment-empty">コメントの取得に失敗しました。</div>';
+  }
+}
+async function submitComment(modId){
+  const textEl = document.getElementById('comment-text');
+  const authorEl = document.getElementById('comment-author');
+  const btn = document.getElementById('comment-submit');
+  const text = textEl.value.trim();
+  if (!text) { toast('コメントを入力してください', 'err'); return; }
+  btn.disabled = true; btn.textContent = '投稿中…';
+  try {
+    if (!authReady) {
+      let tries = 0;
+      while (!authReady && tries < 40) { await new Promise(r => setTimeout(r, 150)); tries++; }
+    }
+    const cRef = doc(collection(db, 'mods', modId, 'comments'));
+    await setDoc(cRef, { author: authorEl.value.trim() || '匿名', text, createdAt: serverTimestamp() });
+    textEl.value = '';
+    toast('コメントを投稿しました', 'ok');
+    loadComments(modId);
+  } catch (e) {
+    console.error(e);
+    toast('コメントの投稿に失敗しました', 'err');
+  } finally {
+    btn.disabled = false; btn.textContent = '投稿';
+  }
+}
+async function submitReport(modId){
+  const reasonEl = document.getElementById('report-reason');
+  const reason = reasonEl.value.trim();
+  if (!reason) { toast('通報理由を入力してください', 'err'); return; }
+  const submitBtn = document.getElementById('report-submit');
+  submitBtn.disabled = true;
+  try {
+    if (!authReady) {
+      let tries = 0;
+      while (!authReady && tries < 40) { await new Promise(r => setTimeout(r, 150)); tries++; }
+    }
+    const rRef = doc(collection(db, 'mods', modId, 'reports'));
+    await setDoc(rRef, { reason, createdAt: serverTimestamp() });
+    reasonEl.value = '';
+    document.getElementById('report-box').style.display = 'none';
+    toast('通報を受け付けました', 'ok');
+  } catch (e) {
+    console.error(e);
+    toast('通報の送信に失敗しました', 'err');
+  } finally {
+    submitBtn.disabled = false;
   }
 }
 function closeDetail(){
@@ -795,21 +1161,22 @@ function loadJSZip(){
   return jsZipLoadPromise;
 }
 
-let uploadState = { sxgFile: null, sxgArrayBuffer: null, iconFile: null, iconDataUrl: null, shotFiles: [], shotPreviews: [], tags: [] };
+let uploadState = { sxgFile: null, sxgArrayBuffer: null, iconFile: null, iconDataUrl: null, shotFiles: [], shotPreviews: [], tags: [], editingMod: null };
 
 function resetUploadForm(){
-  uploadState = { sxgFile: null, sxgArrayBuffer: null, iconFile: null, iconDataUrl: null, shotFiles: [], shotPreviews: [], tags: [] };
+  uploadState = { sxgFile: null, sxgArrayBuffer: null, iconFile: null, iconDataUrl: null, shotFiles: [], shotPreviews: [], tags: [], editingMod: null };
   document.getElementById('f-name').value = '';
   document.getElementById('f-desc').value = '';
   document.getElementById('f-author').value = '';
   document.getElementById('f-version').value = '';
   document.getElementById('f-compat').value = '';
+  document.getElementById('f-changelog').value = '';
   document.getElementById('tag-input').value = '';
   document.getElementById('drop-zone').className = 'drop-zone';
   document.getElementById('drop-zone').innerHTML = `
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M12 16V4m0 0 4 4m-4-4-4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-    <div class="dz-main">.sxgファイルをドロップ、またはタップして選択</div>
-    <div class="dz-sub">SIGNAL用MODファイル（中身はzip・15MBまで）</div>`;
+    <div class="dz-main" id="dz-main-text">.sxgファイルをドロップ、またはタップして選択</div>
+    <div class="dz-sub" id="dz-sub-text">SIGNAL用MODファイル（中身はzip・15MBまで）</div>`;
   document.getElementById('icon-preview').innerHTML = 'なし';
   document.getElementById('icon-remove-btn').style.display = 'none';
   renderTagPills();
@@ -819,10 +1186,47 @@ function resetUploadForm(){
   document.getElementById('progress-fill').style.width = '0%';
   document.getElementById('submit-btn').disabled = false;
   document.getElementById('submit-btn').textContent = 'MODを投稿する';
+  document.getElementById('upload-form-title').textContent = 'MODを投稿';
+  document.getElementById('upload-form-sub').textContent = '.sxgファイルを選ぶと mod.json から名前・説明・作者・バージョンを自動入力します（後から編集可）。';
+  document.getElementById('changelog-field').style.display = 'none';
 }
 
-function openUpload(){
+async function openUpload(){
+  if (!isConfigured) { toast('Firebaseが設定されていません', 'err'); return; }
+  const ok = await ensureGoogleLogin();
+  if (!ok) return;
   resetUploadForm();
+  uploadOverlay.classList.add('open');
+  uploadSheet.classList.add('open');
+}
+async function openEditMod(m){
+  if (!auth.currentUser || auth.currentUser.uid !== m.ownerUid) {
+    const ok = await ensureGoogleLogin();
+    if (!ok || !auth.currentUser || auth.currentUser.uid !== m.ownerUid) {
+      toast('このMODを編集できるのは投稿した本人のみです', 'err');
+      return;
+    }
+  }
+  resetUploadForm();
+  uploadState.editingMod = m;
+  document.getElementById('f-name').value = m.name || '';
+  document.getElementById('f-desc').value = m.description || '';
+  document.getElementById('f-author').value = m.author || '';
+  document.getElementById('f-version').value = m.version || '';
+  document.getElementById('f-compat').value = m.compatVersion || '';
+  uploadState.tags = (m.tags || []).slice();
+  renderTagPills();
+  if (m.iconData) {
+    uploadState.iconDataUrl = `data:${m.iconMime||'image/jpeg'};base64,${m.iconData}`;
+    document.getElementById('icon-preview').innerHTML = `<img src="${uploadState.iconDataUrl}" alt="">`;
+    document.getElementById('icon-remove-btn').style.display = 'inline-block';
+  }
+  document.getElementById('upload-form-title').textContent = 'MODを編集';
+  document.getElementById('upload-form-sub').textContent = '既存の情報を編集して保存できます。新しいバージョンを出す場合のみ.sxgファイルを選び直してください。';
+  document.getElementById('dz-main-text').textContent = '新しい.sxgファイル（任意・変更する場合のみ）';
+  document.getElementById('dz-sub-text').textContent = `現在: ${m.fileName || 'mod.sxg'}（${fmtBytes(m.fileSize)}）`;
+  document.getElementById('changelog-field').style.display = 'block';
+  document.getElementById('submit-btn').textContent = '更新を保存';
   uploadOverlay.classList.add('open');
   uploadSheet.classList.add('open');
 }
@@ -987,60 +1391,58 @@ async function submitMod(){
   errEl.style.display = 'none';
   const name = document.getElementById('f-name').value.trim();
   const version = document.getElementById('f-version').value.trim();
+  const isEdit = !!uploadState.editingMod;
   if (!isConfigured) { errEl.textContent = 'Firebaseが設定されていません。'; errEl.style.display = 'block'; return; }
+  if (!isGoogleUser(auth.currentUser)) { errEl.textContent = 'ログインが必要です。'; errEl.style.display = 'block'; return; }
+  if (isEdit && auth.currentUser.uid !== uploadState.editingMod.ownerUid) { errEl.textContent = 'このMODを編集する権限がありません。'; errEl.style.display = 'block'; return; }
   if (!name) { errEl.textContent = 'MOD名を入力してください。'; errEl.style.display = 'block'; return; }
   if (!version) { errEl.textContent = 'バージョンを入力してください。'; errEl.style.display = 'block'; return; }
-  if (!uploadState.sxgFile || !uploadState.sxgArrayBuffer) { errEl.textContent = '.sxgファイルを選択してください。'; errEl.style.display = 'block'; return; }
+  if (!isEdit && (!uploadState.sxgFile || !uploadState.sxgArrayBuffer)) { errEl.textContent = '.sxgファイルを選択してください。'; errEl.style.display = 'block'; return; }
 
   const submitBtn = document.getElementById('submit-btn');
-  submitBtn.disabled = true; submitBtn.textContent = '投稿中…';
+  submitBtn.disabled = true; submitBtn.textContent = isEdit ? '保存中…' : '投稿中…';
   const progWrap = document.getElementById('progress-wrap');
   const progFill = document.getElementById('progress-fill');
   const progLabel = document.getElementById('progress-label');
   progWrap.style.display = 'block';
 
   try {
-    if (!authReady) {
-      let tries = 0;
-      while (!authReady && tries < 40) { await new Promise(r => setTimeout(r, 150)); tries++; }
-    }
-    const modRef = doc(collection(db, 'mods'));
-    const modId = modRef.id;
+    const modId = isEdit ? uploadState.editingMod.id : doc(collection(db, 'mods')).id;
+    const modRef = doc(db, 'mods', modId);
 
-    progFill.style.width = '8%'; progLabel.textContent = 'アイコンを処理中…';
-    let iconData = '', iconMime = '';
+    progFill.style.width = '6%'; progLabel.textContent = 'アイコンを処理中…';
+    let iconData = isEdit ? (uploadState.editingMod.iconData || '') : '';
+    let iconMime = isEdit ? (uploadState.editingMod.iconMime || '') : '';
     if (uploadState.iconFile) {
       const icon = await compressImageFile(uploadState.iconFile, ICON_MAX_DIM, 0.85);
       iconData = icon.data; iconMime = icon.mime;
     }
 
-    progFill.style.width = '16%'; progLabel.textContent = 'スクリーンショットを処理中…';
+    progFill.style.width = '14%'; progLabel.textContent = 'スクリーンショットを処理中…';
     const compressedShots = [];
     for (let i = 0; i < uploadState.shotFiles.length; i++) {
       const shot = await compressImageFile(uploadState.shotFiles[i], SHOT_MAX_DIM, 0.78);
       compressedShots.push(shot);
     }
+    const existingShotCount = isEdit ? (uploadState.editingMod.screenshotCount || 0) : 0;
+    const screenshotCount = existingShotCount + compressedShots.length;
 
-    progFill.style.width = '26%'; progLabel.textContent = 'MODファイルを変換中…';
-    const sxgBase64 = arrayBufferToBase64(uploadState.sxgArrayBuffer);
-    const chunks = splitBase64(sxgBase64, CHUNK_CHARS);
-
-    for (let i = 0; i < chunks.length; i++) {
-      progFill.style.width = `${28 + Math.round((i / Math.max(1, chunks.length)) * 45)}%`;
-      progLabel.textContent = `MODデータを保存中… (${i+1}/${chunks.length})`;
-      const chunkRef = doc(collection(db, 'mods', modId, 'chunks'), String(i));
-      await setDoc(chunkRef, { index: i, data: chunks[i] });
+    let fileName = isEdit ? uploadState.editingMod.fileName : '';
+    let fileSize = isEdit ? uploadState.editingMod.fileSize : 0;
+    let chunkCount = isEdit ? (uploadState.editingMod.chunkCount || 0) : 0;
+    let sxgChunks = null;
+    if (uploadState.sxgFile && uploadState.sxgArrayBuffer) {
+      progFill.style.width = '24%'; progLabel.textContent = 'MODファイルを変換中…';
+      const sxgBase64 = arrayBufferToBase64(uploadState.sxgArrayBuffer);
+      sxgChunks = splitBase64(sxgBase64, CHUNK_CHARS);
+      fileName = uploadState.sxgFile.name;
+      fileSize = uploadState.sxgFile.size;
+      chunkCount = sxgChunks.length;
     }
 
-    for (let i = 0; i < compressedShots.length; i++) {
-      progFill.style.width = `${75 + Math.round((i / Math.max(1, compressedShots.length)) * 15)}%`;
-      progLabel.textContent = `スクリーンショットを保存中… (${i+1}/${compressedShots.length})`;
-      const shotRef = doc(collection(db, 'mods', modId, 'screenshots'), String(i));
-      await setDoc(shotRef, { index: i, mime: compressedShots[i].mime, data: compressedShots[i].data });
-    }
-
-    progFill.style.width = '92%'; progLabel.textContent = '情報を保存中…';
-    await setDoc(modRef, {
+    // 先にメインドキュメントを作成/更新（サブコレクションのルールがownerUidを参照するため）
+    progFill.style.width = '34%'; progLabel.textContent = '情報を保存中…';
+    const baseData = {
       name,
       description: document.getElementById('f-desc').value.trim(),
       author: document.getElementById('f-author').value.trim(),
@@ -1048,25 +1450,59 @@ async function submitMod(){
       compatVersion: document.getElementById('f-compat').value.trim(),
       tags: uploadState.tags,
       iconData, iconMime,
-      screenshotCount: compressedShots.length,
-      fileName: uploadState.sxgFile.name,
+      screenshotCount,
+      fileName,
       fileMime: 'application/octet-stream',
-      fileSize: uploadState.sxgFile.size,
-      chunkCount: chunks.length,
-      downloads: 0,
-      createdAt: serverTimestamp(),
-    });
+      fileSize,
+      chunkCount,
+      updatedAt: serverTimestamp(),
+    };
+    if (isEdit) {
+      await updateDoc(modRef, baseData);
+    } else {
+      await setDoc(modRef, {
+        ...baseData,
+        ownerUid: auth.currentUser.uid,
+        ownerName: auth.currentUser.displayName || '',
+        downloads: 0, likes: 0,
+        createdAt: serverTimestamp(),
+      });
+    }
+
+    if (compressedShots.length > 0) {
+      for (let i = 0; i < compressedShots.length; i++) {
+        progFill.style.width = `${40 + Math.round((i / Math.max(1, compressedShots.length)) * 20)}%`;
+        progLabel.textContent = `スクリーンショットを保存中… (${i+1}/${compressedShots.length})`;
+        const shotRef = doc(collection(db, 'mods', modId, 'screenshots'), String(existingShotCount + i));
+        await setDoc(shotRef, { index: existingShotCount + i, mime: compressedShots[i].mime, data: compressedShots[i].data });
+      }
+    }
+
+    if (sxgChunks) {
+      for (let i = 0; i < sxgChunks.length; i++) {
+        progFill.style.width = `${62 + Math.round((i / Math.max(1, sxgChunks.length)) * 28)}%`;
+        progLabel.textContent = `MODデータを保存中… (${i+1}/${sxgChunks.length})`;
+        const chunkRef = doc(collection(db, 'mods', modId, 'chunks'), String(i));
+        await setDoc(chunkRef, { index: i, data: sxgChunks[i] });
+      }
+    }
+
+    if (isEdit) {
+      const changelog = document.getElementById('f-changelog').value.trim();
+      const histRef = doc(collection(db, 'mods', modId, 'history'));
+      await setDoc(histRef, { version, note: changelog, updatedAt: serverTimestamp() });
+    }
 
     progFill.style.width = '100%'; progLabel.textContent = '完了！';
-    toast('MODを投稿しました', 'ok');
+    toast(isEdit ? 'MODを更新しました' : 'MODを投稿しました', 'ok');
     setTimeout(() => { closeUpload(); }, 400);
   } catch (e) {
     console.error(e);
-    errEl.textContent = '投稿に失敗しました: ' + (e.message || e);
+    errEl.textContent = (isEdit ? '更新' : '投稿') + 'に失敗しました: ' + (e.message || e);
     errEl.style.display = 'block';
     progWrap.style.display = 'none';
     submitBtn.disabled = false;
-    submitBtn.textContent = 'MODを投稿する';
+    submitBtn.textContent = isEdit ? '更新を保存' : 'MODを投稿する';
   }
 }
 </script>
